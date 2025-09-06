@@ -4,6 +4,7 @@ import logging
 from steps.feature_engineering_step import feature_engineering_step
 from steps.outlier_detection_step import outlier_detection_step
 import joblib
+import os
 
 # Logging
 logging.basicConfig(
@@ -85,7 +86,8 @@ if submitted:
     )
 
     # Load pipeline
-    pipeline = joblib.load("model/pipeline.pkl")
+    MODEL_PATH = os.path.join(os.path.dirname(__file__), "model", "pipeline.pkl")
+    pipeline = joblib.load(MODEL_PATH)
 
     # Align features
     if hasattr(pipeline, "feature_names_in_"):
