@@ -86,7 +86,7 @@ if submitted:
     )
 
     # Load pipeline
-    MODEL_PATH = os.path.join(os.path.dirname(__file__), "model", "pipeline.pkl")
+    MODEL_PATH = os.path.join(os.path.dirname(__file__), "models", "pipeline.pkl")
     pipeline = joblib.load(MODEL_PATH)
 
     # Align features
