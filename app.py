@@ -1,10 +1,9 @@
-# app.py
 import streamlit as st
 import pandas as pd
 import logging
 from steps.feature_engineering_step import feature_engineering_step
 from steps.outlier_detection_step import outlier_detection_step
-from steps.model_loader import load_latest_pipeline
+import joblib
 
 # Logging
 logging.basicConfig(
@@ -86,7 +85,7 @@ if submitted:
     )
 
     # Load pipeline
-    pipeline = load_latest_pipeline()
+    pipeline = joblib.load("model/pipeline.pkl")
 
     # Align features
     if hasattr(pipeline, "feature_names_in_"):
