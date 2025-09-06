@@ -26,4 +26,4 @@ The project is deployed as an interactive web application using Streamlit, allow
 
 ## ✨References 
 - [UCI Dataset](https://archive.ics.uci.edu/dataset/468/online%2Bshoppers%2Bpurchasing%2Bintention%2Bdataset?)
-- [Reference for Template Structure](https://github.com/vn33/MLOps_House-Price-Prediction-using-ZenML-and-MLflow?utm_source=chatgpt.com)
+- [Reference for Template Structure](https://github.com/vn33/MLOps_House-Price-Prediction-using-ZenML-and-MLflow?)
