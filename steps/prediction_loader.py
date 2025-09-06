@@ -1,29 +1,21 @@
-import logging
-import pandas as pd
-
+# ZENML WONT WORK ON STREAMLIT
 from steps.feature_engineering_step import feature_engineering_step
 from steps.outlier_detection_step import outlier_detection_step
 from steps.model_loader import load_latest_pipeline
-
+import logging
+import pandas as pd
 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
-
 def predict_from_raw_row(raw_row: pd.DataFrame):
-    """
-    Apply feature engineering, align with model features,
-    and return predictions for a raw input row.
-    """
-    # Load the latest trained pipeline
     pipeline = load_latest_pipeline()
-
     logging.info("Raw row received for prediction:")
     logging.info(raw_row)
 
-    # Apply ZenML feature engineering
+    # Apply feature engineering normally, no ZenML
     engineered_row_01 = feature_engineering_step(
         raw_row, strategy="binary_encoding", features=["Revenue", "Weekend"]
     )
@@ -73,7 +65,6 @@ def predict_from_raw_row(raw_row: pd.DataFrame):
         logging.info("Row reindexed to match model features:")
         logging.info(engineered_row_05)
 
-    # Make prediction
     prediction = pipeline.predict(engineered_row_05)
 
     if hasattr(pipeline, "predict_proba"):

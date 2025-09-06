@@ -9,18 +9,17 @@ from src.feature_engineering import (
     CategoricalToIntegerEncoding,
     MonthsToSeasonsEncoding
 )
-from zenml import step
 
+# from zenml import step  # Commented out for Streamlit
 
-@step
+# @step  # Commented out for Streamlit
 def feature_engineering_step(
     df: pd.DataFrame, strategy: str = "log", features: list = None
 ) -> pd.DataFrame:
     """Performs feature engineering using FeatureEngineer and selected strategy."""
 
-    # Ensure features is a list, even if not provided
     if features is None:
-        features = []  # or raise an error if features are required
+        features = []
 
     if strategy == "log":
         engineer = FeatureEngineer(LogTransformation(features))
@@ -31,10 +30,10 @@ def feature_engineering_step(
     elif strategy == "onehot_encoding":
         engineer = FeatureEngineer(OneHotEncoding(features))
     elif strategy == "binary_encoding":
-        engineer = FeatureEngineer(BooleanToBinaryEncoding(features))    
-    elif strategy == "integer_encoding": 
+        engineer = FeatureEngineer(BooleanToBinaryEncoding(features))
+    elif strategy == "integer_encoding":
         engineer = FeatureEngineer(CategoricalToIntegerEncoding(features))
-    elif strategy == "month_season_encoding": 
+    elif strategy == "month_season_encoding":
         engineer = FeatureEngineer(MonthsToSeasonsEncoding(features))
     else:
         raise ValueError(f"Unsupported feature engineering strategy: {strategy}")

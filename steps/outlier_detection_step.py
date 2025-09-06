@@ -1,11 +1,10 @@
 import logging
-
 import pandas as pd
 from src.outlier_detection import OutlierDetector, ZScoreOutlierDetection, IQROutlierDetection
-from zenml import step
 
+# from zenml import step  # Commented out for Streamlit
 
-@step
+# @step  # Commented out for Streamlit
 def outlier_detection_step(df: pd.DataFrame, strategy: str = "zscore", features=None) -> pd.DataFrame:
     """
     Detects and removes outliers using OutlierDetector on one or multiple columns.
